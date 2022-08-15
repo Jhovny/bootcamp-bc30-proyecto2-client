@@ -17,7 +17,6 @@ public class ClientController {
     @Autowired
     private ClientRepository clientRepository;
 
-    @GetMapping()
     public Flux<Client> getAll() {
         Flux<Client> clientes = clientRepository.getAll();
         return clientes;
@@ -39,7 +38,7 @@ public class ClientController {
 
     @GetMapping("/getById/{id}")
     public Client getById(@PathVariable String id){
-        Client cliente = clientRepository.getById(id).blockFirst();
+        Client cliente = clientRepository.getById(id).block();
         return cliente;
     }
     @PutMapping("/update")
